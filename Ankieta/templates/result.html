@@ -1,0 +1,137 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Wyniki ankiety: </h1>
+    <table class="columns">
+
+      <tr>
+          <td><div id="dane_czas_wolny" style="width: 600px; height: 300px;"></div></td>
+      </tr>
+      <tr>
+          <td><div id="dane_czas_wolny_stu" style="width: 900px; height: 300px;"></div></td>
+      </tr>
+      <tr>
+            <td><div id="dane_kiedy_czas"  style="width: 900px; height: 300px;"></div></td>
+      </tr>
+
+    </table>
+</div>
+<div class="page-header">
+    <table class="columns">
+        <tr>
+            <td><div id="Z_kim_K"></div></td>
+            <td><div id="Z_kim_M"></div></td>
+        </tr>
+        <tr>
+            <td><div id="media_czas"></div></td>
+            <td><div id="money_for_free_time"></div></td>
+        </tr>
+    </table>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar','corechart']});
+      google.charts.setOnLoadCallback(drawChartCzasWolny);
+      google.charts.setOnLoadCallback(drawKiedyCzas);
+      google.charts.setOnLoadCallback(drawChartCzasWolnyStu);
+      google.charts.setOnLoadCallback(drawChartZkimK);
+      google.charts.setOnLoadCallback(drawChartZkimM);
+      google.charts.setOnLoadCallback(drawChartMediaCzas);
+       google.charts.setOnLoadCallback(drawChartMoneyFor);
+
+      function drawChartCzasWolny() {
+        var data = google.visualization.arrayToDataTable({{ dane1|tojson }});
+
+        var options = {
+          chart: {
+            title: 'Czas wolny w tygodniu z uwzględnieniem weekendu'
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('dane_czas_wolny'));
+
+        chart.draw(data, options);
+      }
+      function drawKiedyCzas() {
+
+        var data = google.visualization.arrayToDataTable({{ danewykres1|tojson }});
+
+        var options = {
+          chart: {
+            title: 'O jakiej porze dnia najwięcej czasu podział na płeć'
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('dane_kiedy_czas'));
+
+        chart.draw(data, options);
+      }
+      function drawChartCzasWolnyStu() {
+        var data = google.visualization.arrayToDataTable({{ danewykres2|tojson }});
+
+        var options = {
+          chart: {
+            title: 'O jakiej porze dnia studenci mają najwięcej czasu - podział ze względu na lata studiów'
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('dane_czas_wolny_stu'));
+
+        chart.draw(data, options);
+      }
+       function drawChartZkimK() {
+
+        var data = google.visualization.arrayToDataTable({{ dane_k_z_kim|tojson }});
+
+        var options = {
+          title: 'Z kim kobiety lubią spędzać czas'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('Z_kim_K'));
+
+        chart.draw(data, options);
+      }
+      function drawChartZkimM() {
+
+        var data = google.visualization.arrayToDataTable({{ dane_m_z_kim|tojson }});
+
+        var options = {
+          title: 'Z kim mężczyźni lubią spędzać czas'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('Z_kim_M'));
+
+        chart.draw(data, options);
+      }
+
+       function drawChartMediaCzas() {
+
+        var data = google.visualization.arrayToDataTable({{ danewykres3|tojson }});
+
+        var options = {
+          title: 'Ile czasu dziennie ankietowani przeznaczają na korzystanie z mediów społecznościowych',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('media_czas'));
+
+        chart.draw(data, options);
+      }
+      function drawChartMoneyFor() {
+
+        var data = google.visualization.arrayToDataTable({{ danewykres4|tojson }});
+
+        var options = {
+          title: 'Ile pieniędzy przeznaczają ankietowani na spędzanie wolnego czasu w tygodniu',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('money_for_free_time'));
+
+        chart.draw(data, options);
+      }
+    </script>
+
+{% endblock %}

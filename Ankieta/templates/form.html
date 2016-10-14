@@ -1,0 +1,219 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+
+  <div class="page-header">
+    <h1>Ankieta - Wypełnij poniższy formularz</h1>
+  </div>
+
+  <form role="form" action="/save" method="post">
+    <h3>Dane presonalne</h3>
+      <b>1. Płeć</b>
+    <div class="form-group">
+        <label><input type="radio" class="radio-inline" name="plec" value="K" required> Kobieta</label>
+        <label><input type = "radio" class="radio-inline"  name="plec" value="M"> Mężczyżna</label>
+    </div>
+
+    <div class="form-group">
+        <label for="pochodzenie">2. Miejsce pochodzenia:</label>
+        <select class="form-control" id="pochodzenie" name="pochodzenie">
+            <option>Miasto</option>
+            <option>Wieś</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="rok_studiow">3. Rok studiów::</label>
+        <select class="form-control" id="rok_studiow" name="rok_studiow">
+            <option>I</option>
+            <option>II</option>
+            <option>III</option>
+            <option>IV</option>
+            <option>V</option>
+        </select>
+    </div>
+
+    <h3>Ilość posiadanego wolnego czasu</h3>
+
+    <div class="form-group">
+        <label for="ilosc_czasu">4. Jak dużo wolnego czasu posiada Pani/Pan w tygodniu (wliczając weekendy)?:</label>
+        <select class="form-control" id="ilosc_czasu" name="ilosc_czasu">
+            <option>brak wolnego czasu</option>
+            <option>mniej niż 10h</option>
+            <option>10-20 h</option>
+            <option>20-30 h</option>
+            <option>więcej niz 30h </option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="ilosc_czasu_ty">5. Ile średnio godzin wolnego czasu posiada Pan/Pani w ciągu pracującego tygodnia?</label>
+        <select class="form-control" id="ilosc_czasu_ty" name="ilosc_czasu_ty">
+            <option>brak wolnego czasu</option>
+            <option>ok. 1h</option>
+            <option>ok 2h</option>
+            <option>ok. 3-5h</option>
+            <option>więcej niz 5h </option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="pora_najwiecej_czasu">6. O jakiej porze dnia ma Pan/Pani najwięcej czasu?</label>
+        <select class="form-control" id="pora_najwiecej_czasu" name="pora_najwiecej_czasu">
+            <option>rano (przed 8)</option>
+            <option>przed południem (8-12)</option>
+            <option>po południu (12-17)</option>
+            <option>wieczorem (17- 22)</option>
+            <option>w nocy (po 22) </option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="obowiazki">7. Jakiego rodzaju obowiązki poza studiami Pan/Pani realizuje przede wszystkim?</label>
+        <select class="form-control" id="obowiazki" name="obowiazki">
+            <option>praca</option>
+            <option>obowiązki w domu</option>
+            <option>dokształcanie się (kurys językowe itp.)</option>
+            <option>opieka nad dzieckiem/osobą starszą</option>
+            <option>inne </option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="ile_osob">8. Z iloma osobami na raz najbardziej lubi Pan/Pani spędzać wolny czas?</label>
+        <select class="form-control" id="ile_osob" name="ile_osob">
+            <option>sam/sama</option>
+            <option>z jedną osobą</option>
+            <option>z dwoma lub trzema osobami</option>
+            <option>z więcej niż trzema osobami</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="mieszkanie">9. Aktualnie mieszka Pan/Pani:</label>
+        <select class="form-control" id="mieszkanie" name="mieszkanie">
+            <option>sam/sama</option>
+            <option>ze znajomymi</option>
+            <option>z partnerką/partnerem</option>
+            <option>z rodzicami</option>
+            <option>z rodzeństwem lub kuzynostwem</option>
+        </select>
+    </div>
+
+        <b>10. Czy posiada Pan/Pani samodzielny pokój?</b>
+
+    <div class="form-group">
+        <label><input type="radio" class="radio-inline" name="swoj_pokoj" value="Tak" required> Tak</label>
+        <label><input type="radio" class="radio-inline" name="swoj_pokoj" value="Nie"> Nie</label>
+    </div>
+
+    <div class="form-group">
+        <label for="spotkania">11. Na spotkania towarzyskie najchętniej umawia się Pan/Pani:</label>
+        <select class="form-control" id="spotkania" name="spotkania">
+            <option>w domu</option>
+            <option>na świeżym powietrzu</option>
+            <option>w barze/klubie/restauracji</option>
+            <option>inne</option>
+        </select>
+    </div>
+    <br>
+    <b>12. Na którym z wymienionych portali społecznościowych posiada Pan/Pani konto? </b>
+
+    <div class="form-group">
+        <label class="checkbox"><input type="checkbox" name="portal" value="facebook">Facebook</label>
+        <label class="checkbox"><input type="checkbox" name="portal" value="twitter">Twitter</label>
+        <label class="checkbox"><input type="checkbox" name="portal" value="instagram">Instagram</label>
+        <label class="checkbox"><input type="checkbox" name="portal" value="snapchat">Snapchat</label>
+    </div>
+
+
+     <div class="form-group">
+         <label for="media_czas">13. Jak długi czas (dziennie) przeznacza Pan/Pani na korzystanie z mediów społecznościowych?</label>
+         <select class="form-control" id="media_czas" name="media_czas">
+             <option>do godziny</option>
+             <option>1-3 godziny</option>
+             <option>4-5 godzin</option>
+             <option>wiecej niż 5 godzin</option>
+         </select>
+     </div>
+      <br>
+        <b>14. Na jakiego rodzaju zainteresowania przeznacza Pan/Pani najwięcej czasu w ciągu tygodnia? (max 3):</b>
+     <div class="form-group">
+         <label class="checkbox"><input type="checkbox" name="formy_spedzania_czasu" value="turystyka">Turystyka</label>
+         <label class="checkbox"><input type="checkbox" name="formy_spedzania_czasu" value="sport">Sport</label>
+         <label class="checkbox"><input type="checkbox" name="formy_spedzania_czasu" value="motoryzacja">Motoryzacja</label>
+         <label class="checkbox"><input type="checkbox" name="formy_spedzania_czasu" value="czytanie">Czytanie</label>
+         <label class="checkbox"><input type="checkbox" name="formy_spedzania_czasu" value="filmy">Filmy</label>
+         <label class="checkbox"><input type="checkbox" name="formy_spedzania_czasu" value="muzyka">Muzyka</label>
+         <label class="checkbox"><input type="checkbox" name="formy_spedzania_czasu" value="spotkania">Spotkania towarzyskie</label>
+         <label class="checkbox"><input type="checkbox" name="formy_spedzania_czasu" value="gotowanie">Gotowanie</label>
+         <label class="checkbox"><input type="checkbox" name="formy_spedzania_czasu" value="sztuki">Sztuki piękne</label>
+         <label class="checkbox"><input type="checkbox" name="formy_spedzania_czasu" value="inne">inne (podaj jaką):</label>
+         <input name="formy_spedzenia_czasu"/>
+     </div>
+      <br>
+      <b>15. Jakie formy aktywnego spędzania czasu Pan/Pani preferuje? (max. 3):</b>
+      <div class="form-group">
+          <label class="checkbox"><input type="checkbox" name="aktywny_czas" value="spacery">Spacery</label>
+          <label class="checkbox"><input type="checkbox" name="aktywny_czas" value="jazda na rowerze">Jazda na rowerze</label>
+          <label class="checkbox"><input type="checkbox" name="aktywny_czas" value="bieganie">Bieganie</label>
+          <label class="checkbox"><input type="checkbox" name="aktywny_czas" value="rolki">Rolki</label>
+          <label class="checkbox"><input type="checkbox" name="aktywny_czas" value="siłownia">Siłownia</label>
+          <label class="checkbox"><input type="checkbox" name="aktywny_czas" value="wodne">Sporty wodne</label>
+          <label class="checkbox"><input type="checkbox" name="aktywny_czas" value="basen">Basen</label>
+          <label class="checkbox"><input type="checkbox" name="aktywny_czas" value="zimowe">Sporty zimowe</label>
+          <label class="checkbox"><input type="checkbox" name="aktywny_czas" value="taniec">Taniec</label>
+          <label class="checkbox"><input type="checkbox" name="aktywny_czas" value="wspinaczka">Wspinaczka górska</label>
+      </div>
+      <br>
+      <b>16. Na jakie formy wypoczynku przed komputerem przeznacza Pan/Pani najwięcej czasu?</b>
+      <div class="form-group">
+          <label class="checkbox"><input type="checkbox" name="czas_komp" value="media">Korzystanie z mediów społecznościowych</label>
+          <label class="checkbox"><input type="checkbox" name="czas_komp" value="rozmowy">Rozmowy za pomocą komunikatorów</label>
+          <label class="checkbox"><input type="checkbox" name="czas_komp" value="humorystyczne">Przeglądanie humorystycznych stron internetowych</label>
+          <label class="checkbox"><input type="checkbox" name="czas_komp" value="inne_strony">Przeglądanie innych typów stron internetowych</label>
+          <label class="checkbox"><input type="checkbox" name="czas_komp" value="gry">Granie w gry komputerowe</label>
+          <label class="checkbox"><input type="checkbox" name="czas_komp" value="fora">Udzielanie się na forach</label>
+          <label class="checkbox"><input type="checkbox" name="czas_komp" value="blog">Prowadzenie bloga</label>
+          <label class="checkbox"><input type="checkbox" name="czas_komp" value="filmy">Oglądanie filmów lub seriali</label>
+      </div>
+
+      <div class="form-group">
+          <label for="kwota">17. Jaką kwotę przeznacza Pan/Pani średnio na spędzanie wolnego czasu w ciągu tygodnia? :</label>
+          <select class="form-control" id="kwota" name="kwota">
+              <option>mniej niż 10 zł</option>
+              <option>10-30 zł</option>
+              <option>30-50 zł</option>
+              <option>50-100 zł</option>
+              <option>więcej niż 100 zł</option>
+          </select>
+      </div>
+
+
+       <div class="form-group">
+           <label for="srodki">18. W jaki sposób uzyskuje Pan/Pani środki do życia?:</label>
+           <select class="form-control" id="srodki" name="srodki">
+               <option>od rodziny</option>
+               <option>z oszczędności</option>
+               <option>ze stypendium</option>
+               <option>kredyt studencki</option>
+               <option>pracuję</option>
+           </select>
+       </div>
+
+       <div class="form-group">
+           <label for="wlasne_zarobki">19. Jeśli Pan/Pani pracuje, jaką część Pana/Pani wydatków jest pokrywana przez własne zarobki</label>
+           <select class="form-control" id="wlasne_zarobki" name="wlasne_zarobki">
+               <option>całość</option>
+               <option>70-90%</option>
+               <option>50-70%</option>
+               <option>30-50%</option>
+               <option>poniżej 30%</option>
+           </select>
+       </div>
+
+       <button type="submit" class="btn btn-info btn-lg">Zapisz wyniki</button>
+</form>
+
+{% endblock %}
+

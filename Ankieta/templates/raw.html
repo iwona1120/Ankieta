@@ -1,0 +1,42 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <h1>Dane:</h1>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Utworzone:</th>
+        <th>Płeć</th>
+        <th>Rok studiów</th>
+        <th>Pochodzenie</th>
+        <th>Portale społecznościowe</th>
+        <th>Forma spędzania wolnego czasu</th>
+        <th>Środki do życia</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {% for element in formdata %}
+    <tr>
+        <td>{{ element.id }}</td>
+        <td>{{ element.created_at }}</td>
+		<td>{{ element.male }}</td>
+        <td>{{ element.student }}</td>
+        <td>{{ element.familyplace}}</td>
+        <td>{{ element.accounts}}</td>
+        <td>{{ element.like_doing}}</td>
+        <td>{{ element.from_money }}</td>
+
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

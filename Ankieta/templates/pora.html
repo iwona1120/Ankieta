@@ -1,0 +1,78 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+
+<div class="page-header">
+<div class="row">
+  <div class="col-sm-3">
+    <div class="sidebar-nav">
+      <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <span class="visible-xs navbar-brand">Wybierz opcję: </span>
+        </div>
+        <div class="navbar-collapse collapse sidebar-navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/jak">Jak najchętniej spędzają czas studentki,a jak studenci?</a></li>
+            <li><a href="/utrzymanie">Ile studenci wydają pieniędzy na spędzenie wolnego czasu?</a></li>
+            <li><a href="/pora">W jakiej porze dnia studenci mają najwięcej czasu? </a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-9">
+
+</div>
+  <div class="col-sm-9">
+   <table class="columns">
+      <tr>
+        <td><div id="pora_dnia_plec" style="width: 900px; height: 300px" ></div><br><br></td>
+      </tr>
+      <tr>
+        <td><div id="pora_dnia_rok" style="width: 900px; height: 300px"></div><br></td>
+      </tr>
+    </table>
+</div>
+  <div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar','corechart']});
+      google.charts.setOnLoadCallback(drawChartPoraDniaPlec);
+      google.charts.setOnLoadCallback(drawChartPoraDniaRok);
+
+      function drawChartPoraDniaPlec() {
+        var data = google.visualization.arrayToDataTable({{ danewykres1|tojson }});
+
+        var options = {
+          chart: {
+            title: 'Pora dnia kiedy studenci mają najwięcej czasu z podziałem na płeć'
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('pora_dnia_plec'));
+
+        chart.draw(data, options);
+      }
+
+      function drawChartPoraDniaRok() {
+        var data = google.visualization.arrayToDataTable({{ danewykres2|tojson }});
+
+        var options = {
+          chart: {
+            title: 'Pora dnia kiedy studenci mają najwięcej czasu z podziałem na lata studiów'
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('pora_dnia_rok'));
+
+        chart.draw(data, options);
+      }
+
+
+
+    </script>
+  </div>
+
+{% endblock %}
