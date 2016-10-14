@@ -1,0 +1,55 @@
+import string
+import glob,os
+
+plik = open('C:/Users/Iwona/Desktop/danetelemedycyna/Bieg/61_DANE.TXT')
+Czas =''
+X=''
+Y=''
+Z=''
+i = 0
+for wiersz in plik:
+   # print(wiersz)
+   if(i>=2):
+        a = wiersz.split('\t')
+        #print(a[0])
+        Czas=Czas +a[0] +';'
+        X = X + a[1] +';'
+        Y = Y + a[2] + ';'
+        Z = Z + a[3] + ';'
+   i=i+1
+
+# print(Czas)
+# print(X)
+# print (Y)
+# print(Z)
+
+
+#path ='C:/Users/Iwona/Desktop/danetelemedycyna/Bieg'
+#for filename in glob.glob(os.path.join(path, '*.txt')):
+#  filename = filename.replace('\\','/')
+#  print(filename)
+Czynnosc = { 'bieg': 1,
+             'chód' : 2,
+             'siedzenie':3,
+             'upadek': 4,
+
+
+}
+
+path ='C:/Users/Iwona/Desktop/danetelemedycyna'
+for filename in os.listdir(path):
+  #filename = filename.replace('\\','/')
+
+  f = path +'/'+filename
+  print(f)
+  fn = filename.lower()
+  id = Czynnosc[fn]
+  print(Czynnosc[fn])
+  for file in glob.glob(os.path.join(f, '*.txt')):
+      print(file)
+
+
+
+id =1
+sql = "INSERT INTO Sygnaly(IdCzynnosci, Czas, X, Y, Z) VALUES (1, '" +Czas +"','"+ X +"','"+ Y +"','"+Z+"');"
+print(sql)

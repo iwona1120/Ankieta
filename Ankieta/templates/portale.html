@@ -1,0 +1,76 @@
+<!-- extend base layout -->
+{% extends "base1.html" %}
+
+{% block content %}
+
+
+  <div class="col-sm-9">
+    <h2> Z jakich portali korzystają studenci?</h2>
+   <div class="row">
+          <div id="withwho" style="width: 800px; height: 400px;"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" ><div id="withwho_w" ></div></div>
+        <div class="col-sm-6" ><div id="withwho_m"></div></div>
+      </div>
+
+  <div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar','corechart']});
+     google.charts.setOnLoadCallback(drawChartwithwho);
+      google.charts.setOnLoadCallback(drawChartwithwho_w);
+      google.charts.setOnLoadCallback(drawChartwithwho_m);
+
+      function drawChartwithwho() {
+
+        var data = google.visualization.arrayToDataTable({{ danewykres1|tojson }});
+
+        var options = {
+          title: '',
+          legend: 'none',
+          pieSliceText: 'label',
+          slices: {  2: {offset: 0.2},
+                    4: {offset: 0.3},
+                    6: {offset: 0.4},
+                    8: {offset:0.5}}
+
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('withwho'));
+
+        chart.draw(data, options);
+      }
+
+      function drawChartwithwho_w() {
+
+        var data = google.visualization.arrayToDataTable({{ danewykres2|tojson }});
+
+        var options = {
+          title: 'Kobiety',
+        is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('withwho_w'));
+
+        chart.draw(data, options);
+      }
+
+      function drawChartwithwho_m() {
+
+        var data = google.visualization.arrayToDataTable({{ danewykres3|tojson }});
+
+        var options = {
+          title: 'Mężczyźni',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('withwho_m'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </div>
+
+{% endblock %}

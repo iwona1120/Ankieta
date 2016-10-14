@@ -1,0 +1,80 @@
+<!-- extend base layout -->
+{% extends "base1.html" %}
+
+{% block content %}
+
+  <div class="col-sm-9">
+   <table class="columns">
+      <tr>
+        <td><div id="Like" style="width: 900px; height: 500px;" ></div></td>
+
+      </tr>
+     <tr>
+       <td><div id="Active" style="width: 900px; height: 500px;"></div></td>
+     </tr>
+     <tr>
+       <td><div id="Computer" style="width: 900px; height: 500px;"></div></td>
+     </tr>
+    </table>
+</div>
+  <div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar','corechart']});
+      google.charts.setOnLoadCallback(drawChartLike);
+      google.charts.setOnLoadCallback(drawChartActive);
+      google.charts.setOnLoadCallback(drawChartComputer);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChartLike() {
+
+        var data = google.visualization.arrayToDataTable({{ danewykres4|tojson }});
+
+        var options = {
+          title: 'Ile studenci wydaja na spędzanie wolnego czasu?',
+          legend: 'none',
+          pieSliceText: 'label',
+          slices: {  2: {offset: 0.2},
+                    4: {offset: 0.3},
+                    6: {offset: 0.4},
+                    8: {offset:0.5}}
+
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('Like'));
+
+        chart.draw(data, options);
+      }
+
+      function drawChartActive() {
+
+        var data = google.visualization.arrayToDataTable({{ danewykres1|tojson }});
+
+        var options = {
+          title: 'W jaki sposób uzyskują środki do życia?',
+        is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('Active'));
+
+        chart.draw(data, options);
+      }
+
+      function drawChartComputer() {
+
+        var data = google.visualization.arrayToDataTable({{ danewykres2|tojson }});
+
+        var options = {
+          title: 'Jaką czesć wydatków pokrywają własne zarobki?',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('Computer'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </div>
+{% endblock %}

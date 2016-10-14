@@ -1,0 +1,136 @@
+<!-- extend base layout -->
+{% extends "base1.html" %}
+
+{% block content %}
+
+  <div class="col-sm-9">
+      <div class="row">
+          <div id="withwho" style="width: 800px; height: 400px;"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" ><div id="withwho_w" ></div></div>
+        <div class="col-sm-6" ><div id="withwho_m"></div></div>
+      </div>
+
+       <div class="row">
+          <div id="Where" style="width: 800px; height: 400px;"></div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" ><div id="Where_w" ></div></div>
+        <div class="col-sm-6" ><div id="Where_m"></div></div>
+      </div>
+
+  <div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar','corechart']});
+      google.charts.setOnLoadCallback(drawChartwithwho);
+      google.charts.setOnLoadCallback(drawChartwithwho_w);
+      google.charts.setOnLoadCallback(drawChartwithwho_m);
+      google.charts.setOnLoadCallback(drawChartWhere);
+      google.charts.setOnLoadCallback(drawChartWhere_w);
+      google.charts.setOnLoadCallback(drawChartwithWhere_m);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChartwithwho() {
+
+        var data = google.visualization.arrayToDataTable({{ withwho|tojson }});
+
+        var options = {
+          title: 'Z iloma osobami studenci lubia spędzać wolny czas?',
+          legend: 'none',
+          pieSliceText: 'label',
+          slices: {  2: {offset: 0.2},
+                    4: {offset: 0.3},
+                    6: {offset: 0.4},
+                    8: {offset:0.5}}
+
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('withwho'));
+
+        chart.draw(data, options);
+      }
+
+      function drawChartwithwho_w() {
+
+        var data = google.visualization.arrayToDataTable({{ withwho_w|tojson }});
+
+        var options = {
+          title: 'Kobiety',
+        is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('withwho_w'));
+
+        chart.draw(data, options);
+      }
+
+      function drawChartwithwho_m() {
+
+        var data = google.visualization.arrayToDataTable({{ withwho_m|tojson }});
+
+        var options = {
+          title: 'Mężczyźni',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('withwho_m'));
+
+        chart.draw(data, options);
+      }
+      function drawChartWhere() {
+
+        var data = google.visualization.arrayToDataTable({{ Where|tojson }});
+
+        var options = {
+          title: 'Gdzie studenci spotykają się w wolnym czasie?',
+          legend: 'none',
+          pieSliceText: 'label',
+          slices: {  2: {offset: 0.2},
+                    4: {offset: 0.3},
+                    6: {offset: 0.4},
+                    8: {offset:0.5}}
+
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('Where'));
+
+        chart.draw(data, options);
+      }
+
+      function drawChartWhere_w() {
+
+        var data = google.visualization.arrayToDataTable({{ Where_w|tojson }});
+
+        var options = {
+          title: 'Kobiety',
+        is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('Where_w'));
+
+        chart.draw(data, options);
+      }
+
+      function drawChartwithWhere_m() {
+
+        var data = google.visualization.arrayToDataTable({{ Where_m|tojson }});
+
+        var options = {
+          title: 'Mężczyźni',
+          pieHole: 0.4,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('Where_m'));
+
+        chart.draw(data, options);
+      }
+
+    </script>
+  </div>
+{% endblock %}
