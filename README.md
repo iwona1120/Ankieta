@@ -1,2 +1,2 @@
 # Ankieta
-Ankieta na temat spedzania wolnego czasu
+Ankieta dotyczace spedzanie wonlego czasu wsrod studentow
