@@ -1,0 +1,21 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+
+  <!-- Main jumbotron for a primary marketing message or call to action -->
+  <div class="jumbotron text-center">
+    <h2>Zapraszamy do wypełnienia formularza!</h2>
+    <p> Ankieta na temat sposobów spędzania wolnego czasu przez studentów AGH.</p>
+  </div>
+  <div class="page-header">
+    <h2>Wybierz następny krok:</h2>
+  </div>
+  <p>
+  <center>
+    <a href="/form" class="btn btn-info btn-lg" role="button">Wypełnij formularz</a>
+    <a href="/moje" class="btn btn-info btn-lg" role="button">Zobacz wyniki</a>
+  </p>
+</center>
+
+{% endblock %}

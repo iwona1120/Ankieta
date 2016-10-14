@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div>
+    <div class="jumbotron jumbotron-sm">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12 col-lg-12">
+					<h1 class="h1">
+						W czym możemy Ci pomóc?<small><br>Formularz kontaktowy</small></h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<form action="MAILTO:monikatomczyk93@gmail.com" method="post" enctype="text/plain">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				<div class="well well-sm">
+					<form>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="name">
+									Imię i nazwisko *</label>
+								<input type="text" class="form-control" id="name" placeholder="" required="required" />
+							</div>
+							<div class="form-group">
+								<label for="email">
+									E-mail *</label>
+								<div class="input-group">
+									<span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+									</span>
+									<input type="email" class="form-control" id="email" placeholder="" required="required" /></div>
+							</div>
+							<div class="form-group">
+								<label for="subject">
+									Kategoria *</label>
+								<select id="subject" name="subject" class="form-control" required="required">
+									<optgroup label="Wybierz kategorię wiadomości:">
+									<option value="customer">Mam pytanie</option>
+									<option value="support">Problemy techniczne</option>
+									<option value="other">Inne</option>
+									</optgroup>
+									
+								</select>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group">
+								<label for="name">
+									Wiadomość *</label>
+								<textarea name="message" id="message" class="form-control" rows="9" cols="25" required="required"
+									placeholder=""></textarea>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary pull-right" id="btnContactUs">
+								Wyślij wiadomość</button>
+						</div>
+					</div>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<form>
+				<legend><span class="glyphicon glyphicon-globe"></span> Dane teleadresowe:</legend>
+				<address>
+					<strong>Studenci Inżynierii Biomedycznej</strong> <br>
+					Monika Tomczyk<br>
+					Iwona Stuglik<br>
+					Marta Wojciechowska<br>
+					Piotr Stankowski<br><br>
+					<abbr title="Telefon">
+						T:</abbr>
+					+48 516649710<br>
+					<abbr title="E-mail">
+						E:</abbr>
+					<a href="mailto:monikatomczyk93@gmail">monikatomczyk93@gmail.com</a><br>
+					<a href="mailto:stuglikiwona@gmail.com">stuglikiwona@gmail.com</a><br>
+					<a href="mailto:hoparapka@gmail.com">hoparapka@gmail.com</a><br>
+					<a href="mailto:piot.stank@gmail.com ">piot.stank@gmail.com </a><br>
+				</address>
+				</form>
+			</div>
+		</div>
+	</div>
+	</form>
+</div>
+{% endblock %}

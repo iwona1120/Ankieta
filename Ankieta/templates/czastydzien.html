@@ -1,0 +1,76 @@
+
+<!-- extend base layout -->
+{% extends "base1.html" %}
+
+{% block content %}
+
+
+  <div class="col-sm-9">
+      <h2> Ilość wolnego czasu wsród studentów wliczając weekendy</h2>
+   <table class="columns">
+      <tr>
+          <td colspan="2"><div id="Time" style="width: 900px; height: 500px;"></div></td>
+      </tr>
+       <tr>
+        <td><div id="pora_dnia_plec" style="width: 900px; height: 300px" ></div><br><br></td>
+      </tr>
+      <tr>
+        <td><div id="pora_dnia_rok" style="width: 900px; height: 300px"></div><br></td>
+      </tr>
+    </table>
+</div>
+  <div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar','corechart']});
+      google.charts.setOnLoadCallback(drawChartPoraDniaPlec);
+      google.charts.setOnLoadCallback(drawChartPoraDniaRok);
+      google.charts.setOnLoadCallback(drawChartLike);
+
+      function drawChartPoraDniaPlec() {
+        var data = google.visualization.arrayToDataTable({{ Czas_wolny_plec|tojson }});
+
+        var options = {
+          chart: {
+            title: 'Podział ze względu na płeć'
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('pora_dnia_plec'));
+
+        chart.draw(data, options);
+      }
+
+      function drawChartPoraDniaRok() {
+        var data = google.visualization.arrayToDataTable({{ Czas_wolny_rok|tojson }});
+
+        var options = {
+          chart: {
+            title: 'Podział na lata studiów'
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('pora_dnia_rok'));
+
+        chart.draw(data, options);
+      }
+      function drawChartLike() {
+
+        var data = google.visualization.arrayToDataTable({{ danewykres4|tojson }});
+
+        var options = {
+          title: '',
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('Time'));
+
+        chart.draw(data, options);
+      }
+
+
+
+    </script>
+  </div>
+
+{% endblock %}
