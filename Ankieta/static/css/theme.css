@@ -19,7 +19,8 @@ body {
 
 .jumbotron {
 	background-image:url("http://eskipaper.com/images/pretty-white-clouds-wallpaper-1.jpg");
-    background-position: center;
+
+    background-size:cover;
     
 }
 
